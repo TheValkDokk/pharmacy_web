@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pharmacy_web/constant/constant.dart';
-import 'package:pharmacy_web/controllers/order_controller.dart';
 
 import 'widgets/cart_tile.dart';
 
@@ -12,10 +11,9 @@ class CartWindow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var formatter = NumberFormat('#,###');
-    return GetX<CurrentOrderController>(
-      init: CurrentOrderController(),
-      builder: (cart) {
-        if (cart.cartCount <= 0) {
+    return Obx(
+      () {
+        if (currentOrderController.cartCount <= 0) {
           return Center(
             child: Column(
               children: const [
@@ -36,7 +34,7 @@ class CartWindow extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SelectableText(
-                      'Total Price: ${formatter.format(cart.cartPrice.value)},000 VND',
+                      'Total Price: ${formatter.format(currentOrderController.cartPrice.value)},000 VND',
                       style: const TextStyle(fontSize: 20),
                     ),
                     TextButton.icon(
@@ -49,7 +47,7 @@ class CartWindow extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: cart.cartCount.value,
+                    itemCount: currentOrderController.cartCount.value,
                     itemBuilder: (context, index) {
                       return CartTile(index);
                     },

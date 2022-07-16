@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
@@ -54,6 +55,7 @@ class AuthService {
   Future logoutGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
+      GoogleSignIn().signOut();
       await auth.signOut();
     } catch (e) {
       print(e);
