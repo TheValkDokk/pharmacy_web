@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           final d = drugController.drugs.firstWhere((element) =>
               element.fullName == 'Peptide Collagen Essence Mask (23g)');
-          Get.to(() => DrugDetail(d));
+          Get.to(const DrugDetail(), arguments: d);
         },
         child: Image.asset('assets/images/imaBanner.webp'),
       ),
@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
           final d = drugController.drugs.firstWhere((element) =>
               element.fullName ==
               'Brauer Liquid Multivitamin With Iron syrup for children 200ml bottle');
-          Get.to(() => DrugDetail(d));
+          Get.to(const DrugDetail(), arguments: d);
         },
         // child: Image.asset('/assets/images/imgBanner4.png'),
         child: Image.network(

@@ -7,6 +7,7 @@ import 'controllers/drug_controller.dart';
 import 'controllers/order_controller.dart';
 import 'controllers/page_controller.dart';
 import 'firebase_options.dart';
+import 'pages/drug_detail/drug_detail.dart';
 import 'pages/login/login.dart';
 import 'widgets/app_bar.dart';
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         MainPage.routeName: (context) => const MainPage(),
         LoginPage.routeName: (context) => const LoginPage(),
+        DrugDetail.routeName: (context) => const DrugDetail(),
       },
       initialRoute: MainPage.routeName,
     );

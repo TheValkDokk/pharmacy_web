@@ -9,70 +9,74 @@ import 'package:pharmacy_web/widgets/app_bar.dart';
 
 import '../../constant/constant.dart';
 import '../../icons/icon.dart';
+import 'widgets/other_drugs.dart';
 
 class DrugDetail extends StatelessWidget {
-  const DrugDetail(this._drug);
+  const DrugDetail();
 
-  final Drug _drug;
+  static const routeName = '/detail';
 
   @override
   Widget build(BuildContext context) {
+    final drug = Get.arguments as Drug;
     return Scaffold(
       appBar: const HomeAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: Get.width * 0.8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CachedNetworkImage(
-                      height: Get.height * 0.4,
-                      memCacheWidth: 487,
-                      memCacheHeight: 300,
-                      imageUrl: _drug.imgUrl,
-                      placeholder: (_, url) =>
-                          const Center(child: Icon(MyFlutterApp.capsules)),
-                      errorWidget: (_, url, er) => Lottie.asset(
-                        'assets/json-gif/image-loading.json',
-                        alignment: Alignment.center,
-                        height: 100,
-                        fit: BoxFit.fill,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Center(
+            child: SizedBox(
+              width: Get.width * 0.8,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CachedNetworkImage(
+                        height: Get.height * 0.4,
+                        memCacheWidth: 487,
+                        memCacheHeight: 300,
+                        imageUrl: drug.imgUrl,
+                        placeholder: (_, url) =>
+                            const Center(child: Icon(MyFlutterApp.capsules)),
+                        errorWidget: (_, url, er) => Lottie.asset(
+                          'assets/json-gif/image-loading.json',
+                          alignment: Alignment.center,
+                          height: 100,
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          AutoSizeText(
-                            _drug.fullName,
-                            style: GoogleFonts.kanit(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            AutoSizeText(
+                              drug.fullName,
+                              style: GoogleFonts.kanit(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 2,
+                              textAlign: TextAlign.left,
                             ),
-                            maxLines: 2,
-                            textAlign: TextAlign.left,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              PriceAndAddWidget(drug: _drug),
-                              const ShippingMethod(),
-                            ],
-                          ),
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                PriceAndAddWidget(drug: drug),
+                                const ShippingMethod(),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  OtherDrugs(drug),
+                ],
               ),
-              const SizedBox(height: 20),
-            ],
+            ),
           ),
         ),
       ),
@@ -109,14 +113,15 @@ class PriceAndAddWidget extends StatelessWidget {
             height: Get.height * 0.05,
             width: Get.width * 0.18,
             child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () => authController.checkSignin(addToCart),
-                icon: const Icon(Icons.add_shopping_cart_sharp),
-                label: const Text(
-                  'Add to cart',
-                  style: TextStyle(fontSize: 25),
-                )),
-          )
+              style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+              onPressed: () => authController.checkSignin(addToCart),
+              icon: const Icon(Icons.add_shopping_cart_sharp),
+              label: const Text(
+                'Add to cart',
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
+          ),
         ],
       ),
     );

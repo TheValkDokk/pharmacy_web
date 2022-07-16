@@ -1,21 +1,21 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pharmacy_web/pages/drug_detail/drug_detail.dart';
 import 'package:pharmacy_web/widgets/on_hover_fly.dart';
 
 import '../../../constant/constant.dart';
 import '../../../icons/icon.dart';
 import '../../../models/drug.dart';
-import '../../drug_detail/drug_detail.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile(this._drug);
 
   final Drug _drug;
-
-  static const routeName = '/detail';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,8 @@ class ProductTile extends StatelessWidget {
 
     return OnHoverFly(
       onTap: () {
-        Get.to(() => DrugDetail(_drug));
+        log('clicky');
+        Get.to(() => const DrugDetail(), arguments: _drug);
       },
       child: Container(
         width: containerWidth,
