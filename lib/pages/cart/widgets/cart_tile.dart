@@ -67,7 +67,6 @@ class _CartTileState extends State<CartTile> {
                   width: 1,
                 ),
               ),
-              // height: Get.height * 0.03,
               width: Get.width * 0.08,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
