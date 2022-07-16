@@ -19,6 +19,7 @@ class CurrentOrderController extends GetxController {
     status: 'NewOrder',
     date: DateTime.now(),
     id: 'id',
+    method: 'Cash',
     price: 0,
   ).obs;
 

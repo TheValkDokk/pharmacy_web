@@ -41,11 +41,6 @@ class ProductTile extends StatelessWidget {
                 Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    // child: Image.network(
-                    //   _drug.imgUrl,
-                    //   height: Get.height * 0.2,
-                    //   fit: BoxFit.fill,
-                    // ),
                     child: CachedNetworkImage(
                       height: Get.height * 0.2,
                       memCacheWidth: 487,

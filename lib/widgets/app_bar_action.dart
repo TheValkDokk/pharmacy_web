@@ -36,6 +36,17 @@ class AppBarAction extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         if (isLog)
+                          TextButton(
+                            child: const Text(
+                              'My Orders |',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () => Get.toNamed('/orderDetails'),
+                          ),
+                        if (isLog)
                           Text(
                             '${user!.displayName.toString()} |',
                             style: const TextStyle(

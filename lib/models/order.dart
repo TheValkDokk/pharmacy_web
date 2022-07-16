@@ -13,6 +13,7 @@ class Order {
   num price;
   String status;
   DateTime date;
+  String method;
   Order({
     required this.id,
     required this.user,
@@ -20,6 +21,7 @@ class Order {
     required this.price,
     required this.status,
     required this.date,
+    required this.method,
   });
 
   Order copyWith({
@@ -29,6 +31,7 @@ class Order {
     num? price,
     String? status,
     DateTime? date,
+    String? method,
   }) {
     return Order(
       id: id ?? this.id,
@@ -37,6 +40,7 @@ class Order {
       price: price ?? this.price,
       status: status ?? this.status,
       date: date ?? this.date,
+      method: method ?? this.method,
     );
   }
 
@@ -48,6 +52,7 @@ class Order {
       'price': price,
       'status': status,
       'date': date.millisecondsSinceEpoch,
+      'method': method,
     };
   }
 
@@ -63,6 +68,7 @@ class Order {
       price: map['price'] as num,
       status: map['status'] as String,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      method: map['method'] as String,
     );
   }
 
@@ -73,20 +79,20 @@ class Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, user: $user, listCart: $listCart, price: $price, status: $status, date: $date)';
+    return 'Order(id: $id, user: $user, listCart: $listCart, price: $price, status: $status, date: $date, method: $method)';
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant Order other) {
     if (identical(this, other)) return true;
 
-    return other is Order &&
-        other.id == id &&
+    return other.id == id &&
         other.user == user &&
         listEquals(other.listCart, listCart) &&
         other.price == price &&
         other.status == status &&
-        other.date == date;
+        other.date == date &&
+        other.method == method;
   }
 
   @override
@@ -96,7 +102,8 @@ class Order {
         listCart.hashCode ^
         price.hashCode ^
         status.hashCode ^
-        date.hashCode;
+        date.hashCode ^
+        method.hashCode;
   }
 }
 
@@ -107,4 +114,5 @@ Order dummyOrder = Order(
   listCart: [],
   price: 0,
   status: '',
+  method: 'Cash',
 );

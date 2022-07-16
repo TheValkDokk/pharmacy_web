@@ -9,6 +9,8 @@ import 'controllers/page_controller.dart';
 import 'firebase_options.dart';
 import 'pages/drug_detail/drug_detail.dart';
 import 'pages/login/login.dart';
+import 'pages/order_detail/order_detail.dart';
+import 'pages/payment/payment.dart';
 import 'widgets/app_bar.dart';
 
 void main() async {
@@ -36,6 +38,16 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/details/:drugId',
           page: () => const DrugDetail(),
+          transition: Transition.downToUp,
+        ),
+        GetPage(
+          name: '/orderDetails',
+          page: () => const OrderDetail(),
+          transition: Transition.downToUp,
+        ),
+        GetPage(
+          name: '/checkout',
+          page: () => const PaymentPage(),
           transition: Transition.cupertino,
         ),
       ],

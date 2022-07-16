@@ -43,6 +43,13 @@ class CartWindow extends StatelessWidget {
                           currentOrderController.confirmClearCart(),
                       label: const Text("Clear Cart"),
                     ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
+                      ),
+                      onPressed: () => Get.toNamed('/checkout'),
+                      child: const Text('Checkout'),
+                    ),
                   ],
                 ),
                 Expanded(
