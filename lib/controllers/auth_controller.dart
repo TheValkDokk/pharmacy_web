@@ -5,7 +5,6 @@ import 'package:pharmacy_web/controllers/order_controller.dart';
 import 'package:pharmacy_web/models/pharmacyUser.dart';
 
 import '../constant/constant.dart';
-import '../pages/login/login.dart';
 import 'order_history_controller.dart';
 import 'prescription_controller.dart';
 
@@ -25,7 +24,7 @@ class AuthController extends GetxController {
         backgroundColor: Colors.white,
         snackPosition: SnackPosition.BOTTOM,
         messageText: ElevatedButton(
-          onPressed: () => Get.toNamed(LoginPage.routeName),
+          onPressed: () => Get.toNamed('/login'),
           child: const Text('Log in'),
         ),
       );

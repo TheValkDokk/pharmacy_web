@@ -9,7 +9,6 @@ import '../../main.dart';
 import '../../services/auth_service.dart';
 
 class LoginPage extends StatelessWidget {
-  static const routeName = '/login';
   const LoginPage({Key? key}) : super(key: key);
 
   @override

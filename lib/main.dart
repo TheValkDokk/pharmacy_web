@@ -29,12 +29,16 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Kanit'),
       title: 'Material App',
-      routes: {
-        MainPage.routeName: (context) => const MainPage(),
-        LoginPage.routeName: (context) => const LoginPage(),
-        DrugDetail.routeName: (context) => const DrugDetail(),
-      },
-      initialRoute: MainPage.routeName,
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => const MainPage()),
+        GetPage(name: '/login', page: () => const LoginPage()),
+        GetPage(
+          name: '/details/:drugId',
+          page: () => const DrugDetail(),
+          transition: Transition.cupertino,
+        ),
+      ],
     );
   }
 }

@@ -42,6 +42,7 @@ class CurrentOrderController extends GetxController {
         "Total Price: ${formatter.format(cartPrice.value)},000 VND with ${cartCount.value} items",
         colorText: Colors.white,
         backgroundColor: Colors.blue,
+        snackPosition: SnackPosition.BOTTOM,
       );
     } else {
       Get.snackbar(

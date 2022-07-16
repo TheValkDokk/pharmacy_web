@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constant/constant.dart';
 import '../../models/category.dart';
 import '../../models/drug.dart';
-import '../drug_detail/drug_detail.dart';
+import '../ads/ads.dart';
 import 'widgets/btnGroup.dart';
 import 'widgets/product_tile.dart';
 
@@ -19,12 +18,12 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 0),
         child: Column(
           children: [
-            _buildads2(),
+            buildads2(),
             _textGuidance('Category'),
             _buildCategory(),
             _textGuidance('Today Recommendation'),
             _buildRecommend(),
-            _buildads1(),
+            buildads1(),
             _textGuidance('Medicines'),
             _buildList('A1'),
             _textGuidance('Medical Equipment'),
@@ -88,37 +87,6 @@ class HomeScreen extends StatelessWidget {
               );
             }
           })),
-    );
-  }
-
-  Widget _buildads1() {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: InkWell(
-        onTap: () {
-          final d = drugController.drugs.firstWhere((element) =>
-              element.fullName == 'Peptide Collagen Essence Mask (23g)');
-          Get.to(const DrugDetail(), arguments: d);
-        },
-        child: Image.asset('assets/images/imaBanner.webp'),
-      ),
-    );
-  }
-
-  Widget _buildads2() {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: InkWell(
-        onTap: () {
-          final d = drugController.drugs.firstWhere((element) =>
-              element.fullName ==
-              'Brauer Liquid Multivitamin With Iron syrup for children 200ml bottle');
-          Get.to(const DrugDetail(), arguments: d);
-        },
-        // child: Image.asset('/assets/images/imgBanner4.png'),
-        child: Image.network(
-            'https://cdn.tgdd.vn/2022/07/banner/592.182-592x182-1.png'),
-      ),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +11,17 @@ import 'package:pharmacy_web/widgets/app_bar.dart';
 
 import '../../constant/constant.dart';
 import '../../icons/icon.dart';
+import '../ads/ads.dart';
 import 'widgets/other_drugs.dart';
 
 class DrugDetail extends StatelessWidget {
   const DrugDetail();
 
-  static const routeName = '/detail';
-
   @override
   Widget build(BuildContext context) {
-    final drug = Get.arguments as Drug;
+    final bool isRandom = Random().nextBool();
+    final drugId = Get.parameters['drugId'];
+    final drug = drugController.drugs.firstWhere((e) => drugId == e.id);
     return Scaffold(
       appBar: const HomeAppBar(),
       body: SingleChildScrollView(
@@ -72,6 +75,8 @@ class DrugDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 20),
+                  isRandom ? buildads1() : buildads2(),
                   const SizedBox(height: 20),
                   OtherDrugs(drug),
                 ],

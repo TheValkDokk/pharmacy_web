@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pharmacy_web/pages/drug_detail/drug_detail.dart';
 import 'package:pharmacy_web/widgets/on_hover_fly.dart';
 
 import '../../../constant/constant.dart';
@@ -24,7 +23,7 @@ class ProductTile extends StatelessWidget {
     return OnHoverFly(
       onTap: () {
         log('clicky');
-        Get.to(() => const DrugDetail(), arguments: _drug);
+        Get.toNamed('/details/${_drug.id}');
       },
       child: Container(
         width: containerWidth,

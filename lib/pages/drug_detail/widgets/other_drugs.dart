@@ -11,18 +11,18 @@ class OtherDrugs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = drugController.drugs
-      ..removeWhere((element) => element == curDrug);
+    var list = drugController.drugs;
+    list.removeWhere((element) => element == curDrug);
     list.shuffle();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 5,
-          childAspectRatio: Get.height / Get.width * 1.5,
-          crossAxisSpacing: 20,
-        ),
+            crossAxisCount: 5,
+            childAspectRatio: Get.height / Get.width * 1.5,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20),
         itemCount: 10,
         itemBuilder: (_, i) => ProductTile(list[i]),
       ),

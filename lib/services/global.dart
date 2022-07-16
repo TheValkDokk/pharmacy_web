@@ -49,6 +49,4 @@ void removeFromCart(String id, String idDrug) {
   }
 }
 
-void toMain() {
-  Get.toNamed('/');
-}
+void toMain() => Get.toNamed('/');

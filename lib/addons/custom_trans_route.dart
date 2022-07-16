@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../pages/login/login.dart';
-
 class FadePageRoute<T> extends MaterialPageRoute<T> {
   FadePageRoute({
     required WidgetBuilder builder,
@@ -21,7 +19,7 @@ class FadePageRoute<T> extends MaterialPageRoute<T> {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    if (settings.name == LoginPage.routeName) {
+    if (settings.name == '/login') {
       return child;
     }
 

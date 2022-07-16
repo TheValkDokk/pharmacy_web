@@ -6,7 +6,6 @@ import 'package:pharmacy_web/constant/constant.dart';
 import 'package:pharmacy_web/services/auth_service.dart';
 
 import '../pages/cart/cart_window.dart';
-import '../pages/login/login.dart';
 
 class AppBarAction extends StatelessWidget {
   const AppBarAction(this.title);
@@ -48,7 +47,7 @@ class AppBarAction extends StatelessWidget {
                           onPressed: () {
                             isLog
                                 ? AuthService().logoutGoogle()
-                                : Get.toNamed(LoginPage.routeName);
+                                : Get.toNamed("/login");
                           },
                           child: Text(
                             isLog ? 'Logout' : 'Login',
