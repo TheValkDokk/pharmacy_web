@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:pharmacy_web/constant/constant.dart';
 
 import '../models/order.dart';
 
@@ -21,10 +22,13 @@ class OrderService {
       FirebaseFirestore.instance.collection('orders');
 
   Stream<List<Order>> orderStream() {
-    return _order.snapshots().map((snapshot) => snapshot.docs.map((doc) {
-          final f = Order.fromMap(doc.data() as dynamic);
-          return f;
-        }).toList());
+    return _order
+        .where('user.mail', isEqualTo: authController.firebaseUser.value!.email)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) {
+              final f = Order.fromMap(doc.data() as dynamic);
+              return f;
+            }).toList());
   }
 
   Future orderStatus(String st, String id) async {

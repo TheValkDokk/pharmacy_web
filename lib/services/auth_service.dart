@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -57,6 +58,7 @@ class AuthService {
     try {
       GoogleSignIn().signOut();
       await auth.signOut();
+      Get.offAllNamed('/');
     } catch (e) {
       print(e);
     }
