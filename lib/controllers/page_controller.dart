@@ -13,9 +13,9 @@ class PageViewController extends GetxController {
       case 0:
         return const HomeScreen();
       case 1:
-        return const OrderDetail();
+        return const OrderHistoryList();
       case 2:
-        return const OrderDetail();
+        return const OrderHistoryList();
       case 3:
         return const PaymentPage();
       default:

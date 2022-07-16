@@ -9,6 +9,7 @@ import 'controllers/page_controller.dart';
 import 'firebase_options.dart';
 import 'pages/drug_detail/drug_detail.dart';
 import 'pages/login/login.dart';
+import 'pages/order_detail/detail_order_page/detail_order.dart';
 import 'pages/order_detail/order_detail.dart';
 import 'pages/payment/payment.dart';
 import 'widgets/app_bar.dart';
@@ -41,13 +42,18 @@ class MyApp extends StatelessWidget {
           transition: Transition.downToUp,
         ),
         GetPage(
-          name: '/orderDetails',
-          page: () => const OrderDetail(),
+          name: '/orderHistory',
+          page: () => const OrderHistoryList(),
           transition: Transition.downToUp,
         ),
         GetPage(
           name: '/checkout',
           page: () => const PaymentPage(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/orderDetail',
+          page: () => const DetailOrder(),
           transition: Transition.cupertino,
         ),
       ],

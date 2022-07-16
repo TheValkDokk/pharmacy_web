@@ -44,7 +44,7 @@ class AppBarAction extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: () => Get.toNamed('/orderDetails'),
+                            onPressed: () => Get.toNamed('/orderHistory'),
                           ),
                         if (isLog)
                           Text(
