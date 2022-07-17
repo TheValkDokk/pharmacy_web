@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pharmacy_web/controllers/auth_controller.dart';
 
+import '../controllers/app_controller.dart';
 import '../controllers/drug_controller.dart';
 import '../controllers/order_controller.dart';
 import '../controllers/order_history_controller.dart';
@@ -17,6 +18,7 @@ class Const {
 }
 
 DrugController drugController = DrugController.instance;
+AppController appController = AppController.instance;
 OrderController orderController = OrderController.instance;
 PreScripController preController = PreScripController.instance;
 AuthController authController = AuthController.instance;

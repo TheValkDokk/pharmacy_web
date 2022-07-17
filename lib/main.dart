@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pharmacy_web/pages/prescription/prescription.dart';
 
+import 'controllers/app_controller.dart';
 import 'controllers/auth_controller.dart';
 import 'controllers/drug_controller.dart';
 import 'controllers/order_controller.dart';
@@ -21,6 +23,7 @@ void main() async {
   );
   Get.put(CurrentOrderController());
   Get.put(AuthController());
+  Get.put(AppController());
   Get.put(DrugController(), permanent: true);
   Get.put(PageViewController(), permanent: true);
   runApp(MyApp());
@@ -54,6 +57,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/orderDetail',
           page: () => const DetailOrder(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/prescription',
+          page: () => const PrescriptionScreen(),
           transition: Transition.cupertino,
         ),
       ],
