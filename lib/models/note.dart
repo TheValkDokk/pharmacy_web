@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,18 +6,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Note {
   String msg;
   DateTime time;
+  String mail;
+  String name;
+  String patient;
   Note({
     required this.msg,
     required this.time,
+    required this.mail,
+    required this.name,
+    required this.patient,
   });
 
   Note copyWith({
     String? msg,
     DateTime? time,
+    String? mail,
+    String? name,
+    String? patient,
   }) {
     return Note(
       msg: msg ?? this.msg,
       time: time ?? this.time,
+      mail: mail ?? this.mail,
+      name: name ?? this.name,
+      patient: patient ?? this.patient,
     );
   }
 
@@ -24,6 +37,9 @@ class Note {
     return <String, dynamic>{
       'msg': msg,
       'time': time,
+      'mail': mail,
+      'name': name,
+      'patient': patient,
     };
   }
 
@@ -31,6 +47,9 @@ class Note {
     return Note(
       msg: map['msg'] as String,
       time: (map['time'] as Timestamp).toDate(),
+      mail: map['mail'] as String,
+      name: map['name'] as String,
+      patient: map['patient'] as String,
     );
   }
 
@@ -40,15 +59,27 @@ class Note {
       Note.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Note(msg: $msg, time: $time)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Note && other.msg == msg && other.time == time;
+  String toString() {
+    return 'Note(msg: $msg, time: $time, mail: $mail, name: $name, patient: $patient)';
   }
 
   @override
-  int get hashCode => msg.hashCode ^ time.hashCode;
+  bool operator ==(covariant Note other) {
+    if (identical(this, other)) return true;
+
+    return other.msg == msg &&
+        other.time == time &&
+        other.mail == mail &&
+        other.name == name &&
+        other.patient == patient;
+  }
+
+  @override
+  int get hashCode {
+    return msg.hashCode ^
+        time.hashCode ^
+        mail.hashCode ^
+        name.hashCode ^
+        patient.hashCode;
+  }
 }

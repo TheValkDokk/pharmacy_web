@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pharmacy_web/constant/constant.dart';
 import 'package:pharmacy_web/widgets/on_hover_fly.dart';
 
 import '../../../models/category.dart';
@@ -27,6 +29,23 @@ class _ButtonDrugState extends State<ButtonDrug> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void goWhere(String route) {
+    switch (route) {
+      case 'A1':
+        //
+        break;
+      case 'A2':
+        //
+        break;
+      case 'camera':
+        authController.checkSignin(() => Get.toNamed('/prescription'));
+        break;
+      case 'A4':
+        //
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Color color = Colors.lightBlue;
@@ -45,7 +64,7 @@ class _ButtonDrugState extends State<ButtonDrug> with TickerProviderStateMixin {
         break;
     }
     return OnHoverFly(
-      onTap: () {},
+      onTap: () => goWhere(widget.cat.type),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: Container(

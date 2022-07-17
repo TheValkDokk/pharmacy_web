@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../models/note.dart';
@@ -18,12 +19,22 @@ Future<PharmacyUser> getUserByMail(String mail) async {
   );
 }
 
-void sendMsgChat(String idChat, String msg) {
+Future sendMsgChat(String idChat, String msg) async {
   try {
-    FirebaseFirestore.instance.collection('prescription').doc(idChat).update({
-      "note":
-          FieldValue.arrayUnion([Note(msg: msg, time: DateTime.now()).toMap()])
-    });
+    Note note = Note(
+      patient: FirebaseAuth.instance.currentUser!.email.toString(),
+      msg: msg,
+      time: DateTime.now(),
+      mail: FirebaseAuth.instance.currentUser!.email.toString(),
+      name: FirebaseAuth.instance.currentUser!.displayName.toString(),
+    );
+    await FirebaseFirestore.instance
+        .collection('prescription')
+        .doc(idChat)
+        .collection('note')
+        .add(
+          note.toMap(),
+        );
   } on Exception catch (e) {
     print(e);
   }

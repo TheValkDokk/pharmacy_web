@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 showLoading(String str) {
   Get.defaultDialog(
     title: str == '' ? 'Loading...' : str,
-    content: const Center(child: CircularProgressIndicator()),
+    content: const Center(child: CircularProgressIndicator.adaptive()),
     barrierDismissible: false,
   );
 }
