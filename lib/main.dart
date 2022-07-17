@@ -37,7 +37,10 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const MainPage()),
+        GetPage(
+          name: '/',
+          page: () => const MainPage(),
+        ),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(
           name: '/details/:drugId',

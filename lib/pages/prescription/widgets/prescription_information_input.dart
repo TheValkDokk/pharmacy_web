@@ -1,11 +1,11 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 import '../../../constant/constant.dart';
 import '../../../models/note.dart';
@@ -99,13 +99,6 @@ class PrescriptionInput extends StatelessWidget {
     String uname = authController.firebaseUser.value!.displayName.toString();
     String umail = authController.firebaseUser.value!.email.toString();
     SendPresciprClass(appController.imgValue).myAsyncMethod((value) {
-      Note note = Note(
-        patient: umail,
-        msg: 'Posted a Drug Prescription',
-        time: DateTime.now(),
-        mail: umail,
-        name: uname,
-      );
       final prescrip = Prescription(
         id: '1',
         name: name,
@@ -118,13 +111,22 @@ class PrescriptionInput extends StatelessWidget {
       );
       if (value.length > 10) {
         uploadPrescipInfo(prescrip);
-        Get.back();
-        // Get.to(() => const PaymentCompleteScreen('pre'));
+        Get.offAllNamed('/');
+        Get.defaultDialog(
+          title: 'Success',
+          middleText: 'Prescription sent successfully',
+          confirm: TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text('OK'),
+          ),
+        );
       }
     });
   }
 
-  Future<void> uploadPrescipInfo(Prescription prescrip) async {
+  Future uploadPrescipInfo(Prescription prescrip) async {
     await db.collection('prescription').add(prescrip.toMap()).then((value) {
       prescrip.id = value.id;
       db.collection('prescription').doc(value.id).update(prescrip.toMap());
@@ -148,26 +150,51 @@ class SendPresciprClass {
 
   Future<void> myAsyncMethod(Function onSuccess) async {
     UploadTask? uploadTask;
+    appController.progress = 0;
     try {
+      // showLoading("Uploading, Please wait...");
       Get.defaultDialog(
-        title: "Uploading, Please wait...",
-        content: const Center(child: CircularProgressIndicator()),
-        barrierDismissible: false,
+        title: 'Uploading',
+        content: Obx(() {
+          return SizedBox(
+            height: Get.height * 0.3,
+            width: Get.width * 0.5,
+            child: LiquidLinearProgressIndicator(
+              value: appController.progress, // Defaults to 0.5.
+              valueColor: const AlwaysStoppedAnimation(
+                  Colors.blue), // Defaults to the current Theme's accentColor.
+              backgroundColor: Colors
+                  .white, // Defaults to the current Theme's backgroundColor.
+              borderColor: Colors.blue,
+              borderWidth: 5.0,
+              borderRadius: 12.0,
+              direction: Axis
+                  .horizontal, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.horizontal.
+              center: const Text("Loading..."),
+            ),
+          );
+          // return Text('Uploading, ${appController.progress}');
+        }),
       );
-      final file = File(xfile!.path);
       final path = 'prescription/${xfile!.name}';
-      log('send file: $path');
       final send = FirebaseStorage.instance.ref().child(path);
-      log('upload 1');
+
       uploadTask = send.putData(
         await xfile!.readAsBytes(),
         SettableMetadata(contentType: 'image/jpeg'),
       );
-      log('upload 2');
+      uploadTask.snapshotEvents.listen((event) {
+        appController.progress =
+            event.bytesTransferred.toDouble() / event.totalBytes.toDouble();
+        if (event.state == TaskState.success) {}
+      }).onError((error) {
+        // do something to handle error
+      });
       final snapshot = await uploadTask.whenComplete(() {});
       String url = await snapshot.ref.getDownloadURL();
-      print('url: $url');
-      onSuccess(url);
+      if (url.length > 10) {
+        onSuccess(url);
+      }
     } catch (e) {
       log(e.toString());
       Get.defaultDialog(
