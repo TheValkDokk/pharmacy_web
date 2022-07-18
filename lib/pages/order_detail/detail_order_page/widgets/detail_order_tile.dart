@@ -34,7 +34,7 @@ class DetailOrderTile extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: SelectableText(
               cart.drug.fullName,
               maxLines: 3,
@@ -50,17 +50,9 @@ class DetailOrderTile extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: AutoSizeText(
               'Quantity: ${cart.quantity}',
-              maxLines: 1,
-              style: TextStyle(fontSize: fontSize),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: AutoSizeText(
-              '${formatter.format(cart.price)},000 VND',
               maxLines: 1,
               style: TextStyle(fontSize: fontSize),
             ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmacy_web/constant/constant.dart';
 import 'package:pharmacy_web/widgets/on_hover_fly.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/category.dart';
 
@@ -32,16 +33,19 @@ class _ButtonDrugState extends State<ButtonDrug> with TickerProviderStateMixin {
   void goWhere(String route) {
     switch (route) {
       case 'A1':
-        //
+        Get.toNamed('/more/A1');
         break;
       case 'A2':
-        //
+        Get.toNamed('/more/A2');
         break;
       case 'camera':
         authController.checkSignin(() => Get.toNamed('/prescription'));
         break;
       case 'A4':
-        //
+        launchUrl(
+          Uri.parse(
+              'https://www.google.com/maps/search/?api=1&query=Pharmacity'),
+        );
         break;
     }
   }

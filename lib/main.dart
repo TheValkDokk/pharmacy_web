@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pharmacy_web/pages/prescription/prescription.dart';
+import 'package:pharmacy_web/pages/prescription/send/prescription.dart';
 
 import 'controllers/app_controller.dart';
 import 'controllers/auth_controller.dart';
@@ -10,10 +10,13 @@ import 'controllers/order_controller.dart';
 import 'controllers/page_controller.dart';
 import 'firebase_options.dart';
 import 'pages/drug_detail/drug_detail.dart';
+import 'pages/load_more/load_more.dart';
 import 'pages/login/login.dart';
 import 'pages/order_detail/detail_order_page/detail_order.dart';
 import 'pages/order_detail/order_detail.dart';
 import 'pages/payment/payment.dart';
+import 'pages/prescription/list_view/prescription_list.dart';
+import 'pages/prescription/prescrip_detail/prescript_detail.dart';
 import 'widgets/app_bar.dart';
 
 void main() async {
@@ -65,6 +68,21 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/prescription',
           page: () => const PrescriptionScreen(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/prescriptionHistory',
+          page: () => const PrescriptionListScreen(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/prescriptionHistoryDetail',
+          page: () => const PrescriptionHistoryDetail(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/more/:type',
+          page: () => const LoadMoreScreen(),
           transition: Transition.cupertino,
         ),
       ],

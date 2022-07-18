@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../constant/constant.dart';
+import '../../../../addons/image_viewer_popup.dart';
+import '../../../../constant/constant.dart';
 
 class ImagePickerUpload extends StatelessWidget {
   const ImagePickerUpload({Key? key}) : super(key: key);
@@ -21,16 +22,7 @@ class ImagePickerUpload extends StatelessWidget {
             },
             onLongPress: () {
               if (appController.imgValue != null) {
-                Get.defaultDialog(
-                  title: 'Prescription Image',
-                  content: SizedBox(
-                    height: Get.height * 0.6,
-                    width: Get.height * 0.6,
-                    child: InteractiveViewer(
-                      child: Image.network(appController.imgValue!.path),
-                    ),
-                  ),
-                );
+                imagePopUp(appController.imgValue!.path);
               }
             },
             child: Container(

@@ -21,11 +21,11 @@ class DetailOrder extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                flex: 5,
+                flex: 10,
                 child: DetailOrderList(order.listCart),
               ),
               Expanded(
-                flex: 2,
+                flex: 5,
                 child: DetailOrderPanel(order),
               ),
             ],

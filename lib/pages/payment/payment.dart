@@ -173,8 +173,7 @@ class PaymentTotal extends StatelessWidget {
                       child: ToggleSwitch(
                         customWidths: [
                           Get.width * 0.04,
-                          Get.width * 0.07,
-                          Get.width * 0.04,
+                          Get.width * 0.09,
                           Get.width * 0.04,
                         ],
                         minHeight: 50,
@@ -183,17 +182,11 @@ class PaymentTotal extends StatelessWidget {
                         activeFgColor: Colors.white,
                         inactiveBgColor: Colors.grey,
                         inactiveFgColor: Colors.white,
-                        totalSwitches: 4,
-                        labels: const [
-                          'Momo',
-                          'Cash on Delivery',
-                          'Zalo Pay',
-                          'Bank'
-                        ],
+                        totalSwitches: 3,
+                        labels: const ['Momo', 'Cash on Delivery', 'Bank'],
                         activeBgColors: const [
                           [Colors.pink],
                           [Colors.green],
-                          [Colors.blue],
                           [Colors.deepPurple],
                         ],
                         onToggle: (index) {
@@ -278,8 +271,6 @@ class PaymentTotal extends StatelessWidget {
       case 1:
         return 'Cash on Delivery';
       case 2:
-        return 'Zalo Pay';
-      case 3:
         return 'Bank';
       default:
         return 'Cash on Delivery';

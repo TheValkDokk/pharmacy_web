@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,22 +42,33 @@ class OrderHistoryTile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    AutoSizeText(
                       'Price: ${formatter.format(order.price)},000 VND',
+                      maxLines: 1,
                       style: const TextStyle(
                           fontSize: 18,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    AutoSizeText(
                       'Payment Method: ${order.method}',
+                      maxLines: 1,
                       style: const TextStyle(
                           fontSize: 18,
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    AutoSizeText(
                       'Items: ${order.listCart.length}',
+                      maxLines: 1,
+                      style: const TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    AutoSizeText(
+                      'Status: ${order.status}',
+                      maxLines: 1,
                       style: const TextStyle(
                           fontSize: 18,
                           letterSpacing: 1,

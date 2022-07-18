@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_web/pages/prescription/send/widgets/image_picker_upload.dart';
 import 'package:pharmacy_web/widgets/app_bar.dart';
 
-import 'widgets/image_picker_upload.dart';
 import 'widgets/prescription_information_input.dart';
 
 class PrescriptionScreen extends StatelessWidget {
@@ -18,7 +18,6 @@ class PrescriptionScreen extends StatelessWidget {
           children: [
             const Expanded(child: Center(child: ImagePickerUpload())),
             Expanded(child: Center(child: PrescriptionInput())),
-            // PrescriptionInfo(),
           ],
         ),
       ),

@@ -31,6 +31,12 @@ class CurrentOrderController extends GetxController {
 
   Order get getOrder => order.value;
 
+  void addBulk(List<Drug> drug) {
+    for (var e in drug) {
+      addToCart(e);
+    }
+  }
+
   void addToCart(Drug drug) {
     if (isSmaller30(drug)) {
       addOrInc(drug);

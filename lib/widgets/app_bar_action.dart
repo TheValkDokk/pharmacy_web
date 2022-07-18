@@ -38,7 +38,19 @@ class AppBarAction extends StatelessWidget {
                         if (isLog)
                           TextButton(
                             child: const Text(
-                              'My Orders |',
+                              'My Presriptions   |',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () =>
+                                Get.toNamed('/prescriptionHistory'),
+                          ),
+                        if (isLog)
+                          TextButton(
+                            child: const Text(
+                              'My Orders   |',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -48,7 +60,7 @@ class AppBarAction extends StatelessWidget {
                           ),
                         if (isLog)
                           Text(
-                            '${user!.displayName.toString()} |',
+                            ' ${user!.displayName.toString()}   |',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
