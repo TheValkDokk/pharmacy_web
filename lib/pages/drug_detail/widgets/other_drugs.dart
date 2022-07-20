@@ -11,9 +11,11 @@ class OtherDrugs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = drugController.drugs;
+    var tempList = drugController.drugs;
+    var list = [...tempList];
     list.removeWhere((element) => element == curDrug);
     list.shuffle();
+    print(list.length);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: GridView.builder(
