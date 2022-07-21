@@ -113,17 +113,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          int i = page.pageIndex.value;
-          if (i < 3) {
-            page.pageIndex.value++;
-          } else {
-            page.pageIndex.value = 0;
-          }
-        },
-        child: const Icon(Icons.ad_units),
-      ),
     );
   }
 }
