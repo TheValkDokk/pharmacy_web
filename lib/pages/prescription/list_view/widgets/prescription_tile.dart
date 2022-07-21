@@ -15,7 +15,7 @@ class PrescriptionHistoryTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
-        height: Get.height * 0.2,
+        height: Get.height * 0.22,
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.blue,

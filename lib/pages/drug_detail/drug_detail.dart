@@ -75,6 +75,56 @@ class DrugDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: Get.width * 0.5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Ingredients: ",
+                                style: GoogleFonts.kanit(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: drug.ingredients,
+                                style: GoogleFonts.kanit(
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Uses: ",
+                                style: GoogleFonts.kanit(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: drug.uses,
+                                style: GoogleFonts.kanit(
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   isRandom ? buildads1() : buildads2(),
                   const SizedBox(height: 20),
